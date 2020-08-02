@@ -42,7 +42,7 @@ class RGen
     {
       for(let j = this.margin; j < gameEngine.canv.height/2; j += this.width)
         this.alienboi.push(new Rectangle(i,j+220,i+50,j+240));
-        console.log("Hippiy hoppety you are now my property!");
+        console.log("Hippity hoppety you are now my property!");
     }
   }
 
