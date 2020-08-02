@@ -23,6 +23,6 @@ class Circle
   }   
   Move()
   {    
-    this.yCenter = yCenter+3;
+    this.yCenter +=3;
   }
 }

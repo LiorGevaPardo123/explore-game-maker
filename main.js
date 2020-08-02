@@ -13,10 +13,12 @@ let redBall = new Circle(gameEngine.getScreenWidth()/2,50+15, 15);
 let rec = new Rectangle(370,20,490,50);
 let recs = generator.rect();
 
+function mainLoop(data){ 
 
+  gameEngine.clear();   
 
-function mainLoop(data){   
-  
+  redBall.Move();
+
   if(gameEngine.isKeyHeld("ArrowRight")&& rec.x2<gameEngine.getScreenWidth())
   {
     gameEngine.clear();
