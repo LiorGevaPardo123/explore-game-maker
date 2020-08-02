@@ -21,12 +21,32 @@ class Rectangle
   }
   MoveRight()
   {    
-    this.x1 += 2;
-    this.x2 += 2;
+    this.x1 += 7;
+    this.x2 += 7;
   }
   MoveLeft()
   {   
-    this.x1 -= 2;
-    this.x2 -= 2;
+    this.x1 -= 7;
+    this.x2 -= 7;
+  }
+}
+
+class RGen
+{
+  constructor()
+  {
+    this.margin = 60;
+    this.width = 70;
+    this.alienboi = [];
+    for(let i = this.margin; i < gameEngine.canv.width - this.margin; i += this.width)
+    {
+      for(let j = this.margin; j < gameEngine.canv.height/2; j += this.width)
+        this.alienboi.push(new Rectangle(i,j+220,i+50,j+240));
+        console.log("boop");
+    }
+  }
+
+  rect(){
+    return this.alienboi;
   }
 }
