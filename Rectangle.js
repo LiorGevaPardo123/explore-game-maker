@@ -1,11 +1,12 @@
 class Rectangle
 {
-   constructor(x1,y1,x2,y2)
+  constructor(x1,y1,x2,y2)
   {
     this.x1 = x1;
     this.y1 = y1;
     this.x2 = x2;
     this.y2 = y2;
+    this.visible = false;    
   }  
   
   Draw(r, g, b, a)
@@ -18,7 +19,14 @@ class Rectangle
       arr.push([i, j]);
      }
    } 
-   gameEngine.fillPixels(arr, r, g, b, a);       
+   gameEngine.fillPixels(arr, r, g, b, a);
+   this.visible = true;       
+  }
+  
+  Delete()
+  {
+    this.Draw(0, 0, 0, 0);
+    this.visible = false;
   }
 
   MoveRight()

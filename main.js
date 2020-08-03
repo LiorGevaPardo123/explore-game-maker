@@ -51,39 +51,37 @@ rec31,rec32,rec33,rec34,rec35,rec36,rec37,rec38,rec39]
 
 function init()//A function that draws the initial blocks in the game
 {
-  for(let i =0; i<27; i++ )
+  for(let i =0; i<27; i++)
   {
     blocks[i].Draw(255, 206, 209, 255);
-    //gameEngine.fillPixels(blocks[i].Draw(), 255, 206, 209, 255); 
   }   
 
   ball.Draw(0, 206, 209, 255);
-  rec.Draw(0, 206, 209, 255);
-  //gameEngine.fillPixels(ball.Draw(), 0, 206, 209, 255);   
-  //gameEngine.fillPixels(rec.Draw(), 0, 206, 209, 255);        
+  rec.Draw(0, 206, 209, 255);    
+
 }
 
 function mainLoop(data){ 
 
   gameEngine.clear();   
+  
   if(ball.yCenter < height-ball.rad)
   {   
      ball.Move();
   } 
+
   if(gameEngine.isKeyHeld("ArrowRight")&& rec.x2<width)
   {
     gameEngine.clear();
     rec.MoveRight();
   }
+
   if(gameEngine.isKeyHeld("ArrowLeft")&&rec.x1>0)
   {
     gameEngine.clear();
     rec.MoveLeft();
   }   
-  //for(let reco of recs)
-  //{
-   // gameEngine.fillPixels(reco.Draw(), 0, 206, 209, 255); 
-  //}
+
   init();  
 }  
 gameEngine.startMainLoop(mainLoop, {});
