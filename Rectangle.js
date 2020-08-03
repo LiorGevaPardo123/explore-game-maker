@@ -7,7 +7,7 @@ class Rectangle
     this.x2 = x2;
     this.y2 = y2;
     this.step = step;
-    this.visible = false;    
+    this.visible = true;    
   }  
   
   Draw(r, g, b, a)
@@ -20,8 +20,7 @@ class Rectangle
       arr.push([i, j]);
      }
    } 
-   gameEngine.fillPixels(arr, r, g, b, a);
-   this.visible = true;
+   gameEngine.fillPixels(arr, r, g, b, a);   
    //return arr;
   }
   

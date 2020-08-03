@@ -7,7 +7,7 @@ const height = gameEngine.getScreenHeight();
 
 let rnd = Math.floor(Math.random() * 2*Math.PI/3) + Math.PI/6; // returns a random integer from 1 to 100
 //radius = 15
-let ball = new Circle(gameEngine.getScreenWidth()/2,50+15, 15, 6, rnd); 
+let ball = new Circle(gameEngine.getScreenWidth()/2,50+15, 15, 6, 5*Math.PI/6); 
 let rec = new Rectangle(370, 20, 490, 50, 15);
 //let recs = generator.rect();
 
@@ -50,7 +50,10 @@ function init()//A function that draws the initial blocks in the game
 {
   for(let i =0; i<27; i++)
   {
-    blocks[i].Draw(215, 55, 55, 255);
+    if(blocks[i].visible === true)
+    {
+      blocks[i].Draw(215, 55, 55, 255);
+    }
   }   
 
   ball.Draw(0, 206, 209, 255);
@@ -58,38 +61,34 @@ function init()//A function that draws the initial blocks in the game
 
 }
 
-function checkRec(block)
-{
-  if ((ball.yCenter + ball.rad > block.y1) && (ball.xCenter - ball.rad < block.x2) && (ball.xCenter + ball.rad > block.x1) && (block.visible === true))
+function checkBlock(block)// delet block when ball touch
+{  
+  if ((block.visible === true) && (ball.yCenter + ball.rad + ball.speed >= block.y1))
   {
-    ball.angle = 2*Math.PI - ball.angle;
-    block.Delete();
-  }
-
-  if ((ball.yCenter - ball.rad < block.y2) && (ball.xCenter - ball.rad < block.x2) && (ball.xCenter + ball.rad > block.x1) && (block.visible === true))
-  {
-    ball.angle = 2*Math.PI - ball.angle;
-    block.Delete();
-  }
-
+    if ((ball.xCenter + ball.rad > block.x1) && (ball.xCenter - ball.rad < block.x2))
+    {
+      ball.angle = 2*Math.PI - ball.angle;
+      block.Delete();
+    }     
+  } 
 }
 
-function check()
+function touchBlock() // use the function checkBlock on 27 blocks
 {
   for(let i = 0; i < 27; i++)
   {
-    checkRec(blocks[i]);
+    checkBlock(blocks[i]);
   }   
 }
 
-
 let num =1;
 function mainLoop(data)
-{
+{  
   gameEngine.clear();   
-  ball.Move();    
+  ball.Move();   
   
-
+  touchBlock();
+  
   if ((ball.yCenter - ball.rad <= rec.y2) && (ball.xCenter - ball.rad < rec.x2) && (ball.xCenter + ball.rad > rec.x1))
   {
     ball.angle = 2*Math.PI - ball.angle;
@@ -117,8 +116,7 @@ function mainLoop(data)
   {
     gameEngine.clear();
     rec.MoveLeft();
-  }    
-
+  }      
   init(); 
 } 
 
