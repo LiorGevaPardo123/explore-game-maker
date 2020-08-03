@@ -1,10 +1,12 @@
 class Circle
 {
-  constructor(xCenter, yCenter, rad)
+  constructor(xCenter, yCenter, rad, speed)
   {
     this.xCenter = xCenter;
     this.yCenter = yCenter;
     this.rad = rad;
+    this.speed = speed;
+    this.angle = Math.PI/2;
   }  
   
   Draw(r, g, b, a)
@@ -20,11 +22,12 @@ class Circle
           }
        }
     }
-    gameEngine.fillPixels(arr, r, g, b, a);        
+    gameEngine.fillPixels(arr, r, g, b, a);       
   }
 
   Move()
-  {    
-    this.yCenter +=3;
-  }
+  {
+    this.xCenter += this.speed * Math.cos(this.angle);
+    this.yCenter += this.speed * Math.sin(this.angle);
+  }  
 }

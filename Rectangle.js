@@ -20,7 +20,8 @@ class Rectangle
      }
    } 
    gameEngine.fillPixels(arr, r, g, b, a);
-   this.visible = true;       
+   this.visible = true;
+   return arr;
   }
   
   Delete()

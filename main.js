@@ -4,12 +4,9 @@ const gameEngine = new GameEngine();
 const width = gameEngine.getScreenWidth();
 const height = gameEngine.getScreenHeight();
 //let generator = new RGen();
-// Nativ: Make sure to give meaningful names to your functions.
-// Nativ: Make sure your rectangle function accepts x, y, height, width, and color.
-// Nativ: Make sure your circle function accepts x, y, radius, and color.
 
 //radius = 15
-let ball = new Circle(gameEngine.getScreenWidth()/2,50+15, 15); 
+let ball = new Circle(gameEngine.getScreenWidth()/2,50+15, 15, 3); 
 let rec = new Rectangle(370,20,490,50);
 //let recs = generator.rect();
 
@@ -61,13 +58,29 @@ function init()//A function that draws the initial blocks in the game
 
 }
 
+function check()
+{
+  for(let i = 0; i < 27; i++)
+  {
+      for(let j = 0; j < 1000; j++)
+      {
+          if(ball.yCenter === blocks[i].Draw(255, 206, 209, 255)[j] && ball.xCenter === blocks[i].Draw(255, 206, 209, 255)[j])          
+          {
+            blocks[i].Delet();
+            ball.MoveBack();
+          }
+      }
+  }
+}
+
 function mainLoop(data){ 
 
-  gameEngine.clear();   
+  gameEngine.clear();  
   
-  if(ball.yCenter < height-ball.rad)
-  {   
-     ball.Move();
+
+  for(let i = 0; i < 27; i++)
+  {
+       ball.Move();
   } 
 
   if(gameEngine.isKeyHeld("ArrowRight")&& rec.x2<width)
@@ -82,6 +95,7 @@ function mainLoop(data){
     rec.MoveLeft();
   }   
 
-  init();  
-}  
+  init(); 
+} 
+
 gameEngine.startMainLoop(mainLoop, {});
