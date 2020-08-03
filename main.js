@@ -43,6 +43,7 @@ let rec37 = new Rectangle(540,420,590,440);
 let rec38 = new Rectangle(620,420,670,440);
 let rec39 = new Rectangle(700,420,750,440);
 
+//array of rectangles
 let blocks = [rec11,rec12,rec13,rec14,rec15,rec16,rec17,rec18,rec19,
 rec21,rec22,rec23,rec24,rec25,rec26,rec27,rec28,rec29,
 rec31,rec32,rec33,rec34,rec35,rec36,rec37,rec38,rec39]
@@ -59,10 +60,13 @@ function init()//A function that draws the initial blocks in the game
 function mainLoop(data){ 
 
   gameEngine.clear();   
+  if(redBall.yCenter < height-redBall.rad)
+  {
+    console.log("hi");
+     redBall.Move();
+  } 
 
-  redBall.Move();
-
-  if(gameEngine.isKeyHeld("ArrowRight")&& rec.x2<gameEngine.getScreenWidth())
+  if(gameEngine.isKeyHeld("ArrowRight")&& rec.x2<width)
   {
     gameEngine.clear();
     rec.MoveRight();
@@ -71,14 +75,15 @@ function mainLoop(data){
   {
     gameEngine.clear();
     rec.MoveLeft();
-  }
-
+  }   
   //for(let reco of recs)
   //{
    // gameEngine.fillPixels(reco.Draw(), 0, 206, 209, 255); 
   //}
+  
   gameEngine.fillPixels(redBall.Draw(), 0, 206, 209, 255);   
   gameEngine.fillPixels(rec.Draw(), 0, 206, 209, 255);        
+  
   
   init();  
   }
