@@ -44,6 +44,7 @@ class GameEngine {
       }
     }
     var ctx = this.canv.getContext("2d");
+
     var imageData = ctx.getImageData(0, 0, this.canvasWidth, this.canvasHeight);
     var data = imageData.data;
     for (let [x, y] of positions) {
@@ -101,7 +102,7 @@ class GameEngine {
     );
     ctx.fillStyle = "#f0f"; // To make color console.logs more obvious
   }
-  clear(color = "black") {
+  clear(color = "red") {
     if (typeof color !== "string") {
       console.log('the "color" argument for "clear" has to be a string');
       return;

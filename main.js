@@ -52,12 +52,12 @@ function init()//A function that draws the initial blocks in the game
   {
     if(blocks[i].visible === true)
     {
-      blocks[i].Draw(215, 55, 55, 255);
+      blocks[i].Draw(201, 16, 25, 255);
     }
   }   
 
-  ball.Draw(0, 206, 209, 255);
-  rec.Draw(0, 206, 209, 255);    
+  ball.Draw(10, 182, 250 ,255);
+  rec.Draw(201, 16, 25, 255);    
 
 }
 
@@ -69,7 +69,7 @@ function checkBlock(block)// delet block when ball touch
     {
       ball.angle = 2*Math.PI - ball.angle;
       block.Delete();
-      count++;
+      countScore++;
     }     
   } 
 }
@@ -94,19 +94,19 @@ function lost()
 {  
   if(ball.yCenter < rec.y2)
   {
-    gameEngine.writeParagraph("<br>Game Over your score is: "+ count);
-    gameEngine.stopMainLoop();      
-    restart();
-    init();
-    console.log("Game Over");    
-      
+    gameEngine.writeParagraph("<p><br>Game Over 💀</p>your score is: "+ countScore);
+      gameEngine.stopMainLoop();      
+      restart();
+      init();
+      console.log("Game Over"); 
   }
 }
-let count = 0;
+let countScore = 0;
+let countLives = 3;
 let num =1;
 function mainLoop(data)
 {  
-  gameEngine.writeParagraph("<br>Score: "+ count "/br");
+  gameEngine.writeParagraph("<br>⭐ Score: "+ countScore +"<br>");
   gameEngine.clear();   
   ball.Move();   
   lost();
