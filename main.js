@@ -69,6 +69,7 @@ function checkBlock(block)// delet block when ball touch
     {
       ball.angle = 2*Math.PI - ball.angle;
       block.Delete();
+      count++;
     }     
   } 
 }
@@ -90,9 +91,10 @@ function restart()
 }
 
 function lost()
-{
+{  
   if(ball.yCenter < rec.y2)
   {
+    gameEngine.writeParagraph("<br>Game Over your score is: "+ count);
     gameEngine.stopMainLoop();      
     restart();
     init();
@@ -100,10 +102,11 @@ function lost()
       
   }
 }
-
+let count = 0;
 let num =1;
 function mainLoop(data)
 {  
+  gameEngine.writeParagraph("<br>Score: "+ count "/br");
   gameEngine.clear();   
   ball.Move();   
   lost();
