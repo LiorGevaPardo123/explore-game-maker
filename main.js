@@ -8,7 +8,7 @@ const height = gameEngine.getScreenHeight();
 let rnd = Math.floor(Math.random() * 2*Math.PI/3) + Math.PI/6; // returns a random integer from 1 to 100
 //radius = 15
 let ball = new Circle(gameEngine.getScreenWidth()/2,50+15, 15, 6, rnd); 
-let rec = new Rectangle(370,20,490,50);
+let rec = new Rectangle(370, 20, 490, 50, 15);
 //let recs = generator.rect();
 
 let rec11 = new Rectangle(60,280,110,300);
@@ -46,7 +46,6 @@ let blocks = [rec11,rec12,rec13,rec14,rec15,rec16,rec17,rec18,rec19,
 rec21,rec22,rec23,rec24,rec25,rec26,rec27,rec28,rec29,
 rec31,rec32,rec33,rec34,rec35,rec36,rec37,rec38,rec39]
 
-
 function init()//A function that draws the initial blocks in the game
 {
   for(let i =0; i<27; i++)
@@ -59,32 +58,44 @@ function init()//A function that draws the initial blocks in the game
 
 }
 
+function checkRec(block)
+{
+  if ((ball.yCenter + ball.rad > block.y1) && (ball.xCenter - ball.rad < block.x2) && (ball.xCenter + ball.rad > block.x1) && (block.visible === true))
+  {
+    ball.angle = 2*Math.PI - ball.angle;
+    block.Delete();
+  }
+
+  if ((ball.yCenter - ball.rad < block.y2) && (ball.xCenter - ball.rad < block.x2) && (ball.xCenter + ball.rad > block.x1) && (block.visible === true))
+  {
+    ball.angle = 2*Math.PI - ball.angle;
+    block.Delete();
+  }
+
+}
+
 function check()
 {
   for(let i = 0; i < 27; i++)
   {
-      for(let j = 0; j < 1000; j++)
-      {
-          if(ball.yCenter === blocks[i].Draw(255, 206, 209, 255)[j] && ball.xCenter === blocks[i].Draw(255, 206, 209, 255)[j])          
-          {
-            blocks[i].Delete();
-            ball.MoveBack();
-          }
-      }
-  }
+    checkRec(blocks[i]);
+  }   
 }
 
-let num =1;
-function mainLoop(data){ 
 
+let num =1;
+function mainLoop(data)
+{
   gameEngine.clear();   
-  ball.Move();
+  ball.Move();    
+  
+
   if ((ball.yCenter - ball.rad <= rec.y2) && (ball.xCenter - ball.rad < rec.x2) && (ball.xCenter + ball.rad > rec.x1))
   {
     ball.angle = 2*Math.PI - ball.angle;
   }
 
-  if (ball.yCenter + ball.rad < height && ball.xCenter - ball.rad > 0 && ball.xCenter + ball.rad < width)
+  if ((ball.yCenter + ball.rad + ball.speed < height) && (ball.xCenter - ball.rad - ball.speed > 0) && (ball.xCenter + ball.rad + ball.speed < width))
   {
     ball.Move();    
   }
@@ -96,17 +107,17 @@ function mainLoop(data){
   }
 
 
-  if(gameEngine.isKeyHeld("ArrowRight")&& (rec.x2 + 15 < width))
+  if (gameEngine.isKeyHeld("ArrowRight")&& (rec.x2 + rec.step < width))
   {
     gameEngine.clear();
     rec.MoveRight();
   }
 
-  if(gameEngine.isKeyHeld("ArrowLeft") && (rec.x1 - 15 > 0))
+  if (gameEngine.isKeyHeld("ArrowLeft") && (rec.x1 - rec.step > 0))
   {
     gameEngine.clear();
     rec.MoveLeft();
-  }   
+  }    
 
   init(); 
 } 
