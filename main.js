@@ -5,7 +5,7 @@ const width = gameEngine.getScreenWidth();
 const height = gameEngine.getScreenHeight();
 //let generator = new RGen();
 
-let rnd = Math.floor(Math.random() * 2*Math.PI/3) + Math.PI/6; // returns a random integer from 1 to 100
+let rnd = Math.random() * 2*Math.PI/3 + Math.PI/3; // returns a random integer from 1 to 100
 //radius = 15
 let ball = new Circle(gameEngine.getScreenWidth()/2,50+15, 15, 6, 5*Math.PI/6); 
 let rec = new Rectangle(370, 20, 490, 50, 15);
@@ -81,12 +81,32 @@ function touchBlock() // use the function checkBlock on 27 blocks
   }   
 }
 
+function restart()
+{
+  for(let i =0; i<27; i++) 
+  {
+    blocks[i].visible = true;
+  }      
+}
+
+function lost()
+{
+  if(ball.yCenter < rec.y2)
+  {
+    gameEngine.stopMainLoop();      
+    restart();
+    init();
+    console.log("Game Over");    
+      
+  }
+}
+
 let num =1;
 function mainLoop(data)
 {  
   gameEngine.clear();   
   ball.Move();   
-  
+  lost();
   touchBlock();
   
   if ((ball.yCenter - ball.rad <= rec.y2) && (ball.xCenter - ball.rad < rec.x2) && (ball.xCenter + ball.rad > rec.x1))
@@ -116,8 +136,9 @@ function mainLoop(data)
   {
     gameEngine.clear();
     rec.MoveLeft();
-  }      
-  init(); 
+  }    
+  
+  init();   
 } 
 
 gameEngine.startMainLoop(mainLoop, {});
