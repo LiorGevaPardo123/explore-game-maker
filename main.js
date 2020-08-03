@@ -6,7 +6,7 @@ const height = gameEngine.getScreenHeight();
 //let generator = new RGen();
 
 //radius = 15
-let ball = new Circle(gameEngine.getScreenWidth()/2,50+15, 15, 3); 
+let ball = new Circle(gameEngine.getScreenWidth()/2,50+15, 15, 6); 
 let rec = new Rectangle(370,20,490,50);
 //let recs = generator.rect();
 
@@ -50,7 +50,7 @@ function init()//A function that draws the initial blocks in the game
 {
   for(let i =0; i<27; i++)
   {
-    blocks[i].Draw(255, 206, 209, 255);
+    blocks[i].Draw(215, 55, 55, 255);
   }   
 
   ball.Draw(0, 206, 209, 255);
@@ -66,22 +66,35 @@ function check()
       {
           if(ball.yCenter === blocks[i].Draw(255, 206, 209, 255)[j] && ball.xCenter === blocks[i].Draw(255, 206, 209, 255)[j])          
           {
-            blocks[i].Delet();
+            blocks[i].Delete();
             ball.MoveBack();
           }
       }
   }
 }
 
+
+let num =1;
 function mainLoop(data){ 
 
-  gameEngine.clear();  
+  gameEngine.clear();   
   
-
-  if(ball.yCenter + ball.rad < height && ball.xCenter - ball.rad > 0 && ball.xCenter + ball.rad < width)
+  if ((ball.yCenter - ball.rad <= rec.y2) && (ball.xCenter - ball.rad < rec.x2) && (ball.xCenter + ball.rad > rec.x1))
   {
+    ball.angle = 2*Math.PI - ball.angle;
+  }
+
+  if (ball.yCenter + ball.rad < height && ball.xCenter - ball.rad > 0 && ball.xCenter + ball.rad < width)
+  {
+    ball.Move();    
+  }
+  else
+  {
+    ball.angle = num*Math.PI - ball.angle;
+    num++;
     ball.Move();
   }
+
 
   if(gameEngine.isKeyHeld("ArrowRight")&& rec.x2<width)
   {
