@@ -6,9 +6,10 @@ class Circle
     this.yCenter = yCenter;
     this.rad = rad;
   }  
-  Draw()//create an array that have all the spots of the pixels 
+  
+  Draw(r, g, b, a)
   {    
-    let arr = [];
+    let arr = []; //create an array that have all the spots of the pixels 
     for(let y = this.yCenter- this.rad ; y <= this.yCenter + this.rad; y++)
     {
       for(let x = this.xCenter- this.rad ; x <= this.xCenter + this.rad; x++)
@@ -19,8 +20,9 @@ class Circle
           }
        }
     }
-    return arr;       
-  }   
+    gameEngine.fillPixels(arr, r, g, b, a);        
+  }
+
   Move()
   {    
     this.yCenter +=3;

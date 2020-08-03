@@ -9,7 +9,7 @@ const height = gameEngine.getScreenHeight();
 // Nativ: Make sure your circle function accepts x, y, radius, and color.
 
 //radius = 15
-let redBall = new Circle(gameEngine.getScreenWidth()/2,50+15, 15); 
+let ball = new Circle(gameEngine.getScreenWidth()/2,50+15, 15); 
 let rec = new Rectangle(370,20,490,50);
 //let recs = generator.rect();
 
@@ -53,19 +53,23 @@ function init()//A function that draws the initial blocks in the game
 {
   for(let i =0; i<27; i++ )
   {
-    gameEngine.fillPixels(blocks[i].Draw(), 255, 206, 209, 255); 
+    blocks[i].Draw(255, 206, 209, 255);
+    //gameEngine.fillPixels(blocks[i].Draw(), 255, 206, 209, 255); 
   }   
+
+  ball.Draw(0, 206, 209, 255);
+  rec.Draw(0, 206, 209, 255);
+  //gameEngine.fillPixels(ball.Draw(), 0, 206, 209, 255);   
+  //gameEngine.fillPixels(rec.Draw(), 0, 206, 209, 255);        
 }
 
 function mainLoop(data){ 
 
   gameEngine.clear();   
-  if(redBall.yCenter < height-redBall.rad)
-  {
-    console.log("hi");
-     redBall.Move();
+  if(ball.yCenter < height-ball.rad)
+  {   
+     ball.Move();
   } 
-
   if(gameEngine.isKeyHeld("ArrowRight")&& rec.x2<width)
   {
     gameEngine.clear();
@@ -80,13 +84,6 @@ function mainLoop(data){
   //{
    // gameEngine.fillPixels(reco.Draw(), 0, 206, 209, 255); 
   //}
-  
-  gameEngine.fillPixels(redBall.Draw(), 0, 206, 209, 255);   
-  gameEngine.fillPixels(rec.Draw(), 0, 206, 209, 255);        
-  
-  
   init();  
-  }
-
-  
+}  
 gameEngine.startMainLoop(mainLoop, {});
