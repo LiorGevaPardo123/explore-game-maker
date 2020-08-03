@@ -43,37 +43,17 @@ let rec37 = new Rectangle(540,420,590,440);
 let rec38 = new Rectangle(620,420,670,440);
 let rec39 = new Rectangle(700,420,750,440);
 
-function init()
+let blocks = [rec11,rec12,rec13,rec14,rec15,rec16,rec17,rec18,rec19,
+rec21,rec22,rec23,rec24,rec25,rec26,rec27,rec28,rec29,
+rec31,rec32,rec33,rec34,rec35,rec36,rec37,rec38,rec39]
+
+
+function init()//A function that draws the initial blocks in the game
 {
-   gameEngine.fillPixels(rec11.Draw(), 255, 206, 209, 255); 
-   gameEngine.fillPixels(rec12.Draw(), 255, 206, 209, 255); 
-   gameEngine.fillPixels(rec13.Draw(), 255, 206, 209, 255); 
-   gameEngine.fillPixels(rec14.Draw(), 255, 206, 209, 255);     
-   gameEngine.fillPixels(rec15.Draw(), 255, 206, 209, 255); 
-   gameEngine.fillPixels(rec16.Draw(), 255, 206, 209, 255); 
-   gameEngine.fillPixels(rec17.Draw(), 255, 206, 209, 255); 
-   gameEngine.fillPixels(rec18.Draw(), 255, 206, 209, 255); 
-   gameEngine.fillPixels(rec19.Draw(), 255, 206, 209, 255);   
-
-   gameEngine.fillPixels(rec21.Draw(), 255, 206, 209, 255); 
-   gameEngine.fillPixels(rec22.Draw(), 255, 206, 209, 255); 
-   gameEngine.fillPixels(rec23.Draw(), 255, 206, 209, 255); 
-   gameEngine.fillPixels(rec24.Draw(), 255, 206, 209, 255);     
-   gameEngine.fillPixels(rec25.Draw(), 255, 206, 209, 255); 
-   gameEngine.fillPixels(rec26.Draw(), 255, 206, 209, 255); 
-   gameEngine.fillPixels(rec27.Draw(), 255, 206, 209, 255); 
-   gameEngine.fillPixels(rec28.Draw(), 255, 206, 209, 255); 
-   gameEngine.fillPixels(rec29.Draw(), 255, 206, 209, 255);   
-
-   gameEngine.fillPixels(rec31.Draw(), 255, 206, 209, 255); 
-   gameEngine.fillPixels(rec32.Draw(), 255, 206, 209, 255); 
-   gameEngine.fillPixels(rec33.Draw(), 255, 206, 209, 255); 
-   gameEngine.fillPixels(rec34.Draw(), 255, 206, 209, 255);     
-   gameEngine.fillPixels(rec35.Draw(), 255, 206, 209, 255); 
-   gameEngine.fillPixels(rec36.Draw(), 255, 206, 209, 255); 
-   gameEngine.fillPixels(rec37.Draw(), 255, 206, 209, 255); 
-   gameEngine.fillPixels(rec38.Draw(), 255, 206, 209, 255); 
-   gameEngine.fillPixels(rec39.Draw(), 255, 206, 209, 255);   
+  for(let i =0; i<27; i++ )
+  {
+    gameEngine.fillPixels(blocks[i].Draw(), 255, 206, 209, 255); 
+  }   
 }
 
 function mainLoop(data){ 
@@ -99,8 +79,8 @@ function mainLoop(data){
   //}
   gameEngine.fillPixels(redBall.Draw(), 0, 206, 209, 255);   
   gameEngine.fillPixels(rec.Draw(), 0, 206, 209, 255);        
-
-  init();
+  
+  init();  
   }
 
   
