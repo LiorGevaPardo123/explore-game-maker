@@ -1,12 +1,12 @@
 class Circle
 {
-  constructor(xCenter, yCenter, rad, speed)
+  constructor(xCenter, yCenter, rad, speed, angle)
   {
     this.xCenter = xCenter;
     this.yCenter = yCenter;
     this.rad = rad;
     this.speed = speed;
-    this.angle = 3*Math.PI/4;
+    this.angle = angle;
   }  
   
   Draw(r, g, b, a)

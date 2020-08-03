@@ -32,14 +32,14 @@ class Rectangle
 
   MoveRight()
   {    
-    this.x1 += 9;
-    this.x2 += 9;
+    this.x1 += 15;
+    this.x2 += 15;
   }
 
   MoveLeft()
   {   
-    this.x1 -= 9;
-    this.x2 -= 9;
+    this.x1 -= 15;
+    this.x2 -= 15;
   }
 }
 

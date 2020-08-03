@@ -5,8 +5,9 @@ const width = gameEngine.getScreenWidth();
 const height = gameEngine.getScreenHeight();
 //let generator = new RGen();
 
+let rnd = Math.floor(Math.random() * 2*Math.PI/3) + Math.PI/6; // returns a random integer from 1 to 100
 //radius = 15
-let ball = new Circle(gameEngine.getScreenWidth()/2,50+15, 15, 6); 
+let ball = new Circle(gameEngine.getScreenWidth()/2,50+15, 15, 6, rnd); 
 let rec = new Rectangle(370,20,490,50);
 //let recs = generator.rect();
 
@@ -73,12 +74,11 @@ function check()
   }
 }
 
-
 let num =1;
 function mainLoop(data){ 
 
   gameEngine.clear();   
-  
+  ball.Move();
   if ((ball.yCenter - ball.rad <= rec.y2) && (ball.xCenter - ball.rad < rec.x2) && (ball.xCenter + ball.rad > rec.x1))
   {
     ball.angle = 2*Math.PI - ball.angle;
@@ -96,13 +96,13 @@ function mainLoop(data){
   }
 
 
-  if(gameEngine.isKeyHeld("ArrowRight")&& rec.x2<width)
+  if(gameEngine.isKeyHeld("ArrowRight")&& (rec.x2 + 15 < width))
   {
     gameEngine.clear();
     rec.MoveRight();
   }
 
-  if(gameEngine.isKeyHeld("ArrowLeft")&&rec.x1>0)
+  if(gameEngine.isKeyHeld("ArrowLeft") && (rec.x1 - 15 > 0))
   {
     gameEngine.clear();
     rec.MoveLeft();
