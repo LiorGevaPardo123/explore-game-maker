@@ -6,7 +6,7 @@ class Circle
     this.yCenter = yCenter;
     this.rad = rad;
     this.speed = speed;
-    this.angle = Math.PI/2;
+    this.angle = 5*Math.PI/6;
   }  
   
   Draw(r, g, b, a)

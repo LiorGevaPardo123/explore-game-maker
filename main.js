@@ -78,10 +78,10 @@ function mainLoop(data){
   gameEngine.clear();  
   
 
-  for(let i = 0; i < 27; i++)
+  if(ball.yCenter + ball.rad < height && ball.xCenter - ball.rad > 0 && ball.xCenter + ball.rad < width)
   {
-       ball.Move();
-  } 
+    ball.Move();
+  }
 
   if(gameEngine.isKeyHeld("ArrowRight")&& rec.x2<width)
   {
